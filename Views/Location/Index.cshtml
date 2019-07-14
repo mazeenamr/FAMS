@@ -1,0 +1,38 @@
+﻿@using OGtech.Models
+@model IEnumerable<OGtech.Models.Location>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Location</h2>
+
+<button type="button" class="btn btn-default">@Html.ActionLink("Add Location", "newLocation", "Location", null)</button><br /><br /><br />
+
+@if (!Model.Any())
+{
+    <p>We don't have any Location yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Location Name</th>
+                <th>RFID Code</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var loc in Model)
+            {
+                <tr>
+                    <td>@Location.name</td>
+                    <td>@loc.RFIDCode </td>
+                    <td><button type="button" class="btn btn-default" @Html.ActionLink("Edit", "Edit", "Location", new { id = loc.id }, null)</button>
+                        <button type="button" class="btn btn-default">@Html.ActionLink("Delete", "Delete", "Location", new { id = Location.id }, null)</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

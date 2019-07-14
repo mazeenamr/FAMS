@@ -1,0 +1,29 @@
+﻿
+@model OGtech.ViewModel.NewAssetViewModel
+@{
+    ViewBag.Title = "newAsset";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <h2>New Asset</h2>
+
+@using (Html.BeginForm("Save", "Asset"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Asset.name)
+        @Html.TextBoxFor(m => m.Asset.name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Asset.descreption)
+        @Html.TextAreaFor(m => m.Asset.descreption, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Asset.typeId)
+        @Html.DropDownListFor(m => m.Asset.typeId, new SelectList(Model.Assettypes, "Id", "NameType"), "Select type", new { @class = "form-control" })
+    </div>
+
+    @Html.HiddenFor(m => m.Asset.id)
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button class="btn btn-default">@Html.ActionLink("Back To List", "Index", "Asset", null)</button>
+
+}

@@ -1,0 +1,26 @@
+﻿@using OGtech.Models
+@model OGtech.Models.Location
+@{
+    ViewBag.Title = "EditLocation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Location</h2>
+
+@using (Html.BeginForm("Save", "Location"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.name)
+        @Html.TextBoxFor(m => m.name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.RFIDCode)
+        @Html.TextBoxFor(m => m.RFIDCode, new { @class = "form-control" })
+    </div>
+
+    @Html.HiddenFor(m => m.id)
+    <button type="submit" class="btn btn-primary">Save</button>
+    
+    <button class="btn btn-default">@Html.ActionLink("Back To List", "Index", "Location", null)</button>
+
+}   
